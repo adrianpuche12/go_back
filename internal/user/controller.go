@@ -49,7 +49,7 @@ func makeCreateEndpoint(s Service) Controller {
 			return nil, ErrFistNameRequired
 		}
 		if req.LastName == "" {
-			return nil, ErrlastRequired
+			return nil, ErrLastRequired
 		}
 
 		user, err := s.Create(ctx, req.FirstName, req.LastName, req.Email)
@@ -95,7 +95,7 @@ func makeUpdateEndpoint(s Service) Controller {
 		}
 
 		if req.LastName != nil && *req.LastName == "" {
-			return nil, ErrlastRequired
+			return nil, ErrLastRequired
 		}
 
 		if err := s.Update(ctx, req.ID, req.FirstName, req.LastName, req.Email); err != nil {
